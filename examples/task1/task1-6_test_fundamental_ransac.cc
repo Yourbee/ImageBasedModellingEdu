@@ -192,7 +192,7 @@ int main(int argc, char *argv[]){
 
     /** 加载归一化后的匹配对 */
     sfm::Correspondences2D2D corr_all;
-    std::ifstream in("./examples/task1/correspondences.txt");
+    std::ifstream in("/home/qn/Documents/ImageBasedModellingEdu/examples/task1/correspondences.txt");
     assert(in.is_open());
 
     std::string line, word;
