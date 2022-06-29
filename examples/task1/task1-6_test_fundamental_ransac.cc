@@ -37,11 +37,7 @@ typedef math::Matrix<double, 3, 3> FundamentalMatrix;
 int  calc_ransac_iterations (double p,
                            int K,
                            double z = 0.99){
-
-    /** TODO HERE
-     * Coding here**/
-    return 0;
-
+    return std::log(1 - z) / std::log(1 - math::fastpow(p, K));
 
     /** Reference
     double prob_all_good = math::fastpow(p, K);
@@ -169,11 +165,14 @@ std::vector<int> find_inliers(sfm::Correspondences2D2D const & matches
     const double squared_thresh = thresh* thresh;
 
     std::vector<int> inliers;
-
-    /**
-     * TODO HERE
-     *
-     * Coding here **/
+    for (unsigned i = 0; i < matches.size(); i++)
+    {
+        double sd = calc_sampson_distance(F, matches[i]);
+        if (sd < squared_thresh)
+            inliers.push_back(i);        
+        
+    }
+    
 
     /** Reference
     for(int i=0; i< matches.size(); i++){
